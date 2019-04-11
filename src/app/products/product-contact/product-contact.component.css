@@ -1,0 +1,26 @@
+
+
+  button{
+    margin-right: 5px;
+  }
+
+
+  table td,th{
+    line-height: 100px;
+  }
+
+  table td,th,select:hover{
+    cursor: pointer;
+  }
+
+  table{
+    margin-bottom: 25px;
+  }
+
+  table th{
+    text-align: center;
+  }
+
+  .row{
+    margin-top:80px; 
+  }
