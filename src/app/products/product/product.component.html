@@ -1,0 +1,49 @@
+
+<app-main></app-main>
+
+<!-- Bắt đầu card -->
+<div class="row">
+  <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let product of products">
+      <div class="card">
+          <img routerLink="/category/{{cateID}}/product/{{product.id}}" class="card-img-top" src="{{product.imglink}}" alt="Card image" style="width:100%">
+          <div class="card-body">
+            <h4 class="card-title">{{product.name}}</h4>
+            <p class="card-text">Price: <b>{{product.pricesale | currency: " $ "}}  </b><del>{{product.priceregular  | currency: " $ "}}</del></p>
+            <p class="card-text">Manufacturer: Nike</p>
+            <p class="card-text">Made In China</p>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <br>
+            <br>                  
+            <button class="btn btn-primary"  data-toggle="modal" data-target="#exampleModalBuy">Buy Now</button>
+            <button class="btn btn-success" routerLink="/product/{{product.id}}">Details</button>
+          </div>
+      </div>
+        
+  </div>
+</div>
+<!-- Kết thúc card -->
+
+<!-- Bắt đầu modal Buy -->
+<div class="modal fade" id="exampleModalBuy" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Buy Now</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Buy Success!
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" data-dismiss="modal" aria-label="Close">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Kết thúc modal Buy -->
