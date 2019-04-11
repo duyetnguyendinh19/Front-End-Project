@@ -1,0 +1,47 @@
+.navbar-brand{
+    color: white;
+    margin-left: 5px;
+    
+}
+
+.nav-link{
+    color: white;
+}
+
+
+.group{
+    flex: 3;
+    margin-left: 150px;
+}
+
+
+/* form ul{
+    position: absolute;
+    display: block;
+    margin-top: 120px; 
+    padding-left: 0;
+}
+
+form ul li{
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    background: white;
+    width: 205px;
+    height: 40px;
+    padding: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+    list-style-type: none;
+}
+
+form ul li a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+form ul li:hover{
+    background: gray;
+} */
+
