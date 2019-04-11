@@ -1,0 +1,9 @@
+#demo{
+    margin-top: 80px;
+    margin-bottom: 20px;
+}
+
+.carousel-inner img{
+    width: 1200px;
+    height: 600px;
+}
