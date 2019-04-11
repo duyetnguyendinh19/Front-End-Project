@@ -1,0 +1,156 @@
+
+<!-- Page -->
+<div class="page-area product-page spad">
+		<div class="container">
+			<div class="row" *ngIf="detailProduct">
+				<div class="col-lg-7">
+					<figure>
+						<img class="product-big-img" src="{{detailProduct.imglink}}" height="510px" alt="">
+					</figure>
+					<!-- <div class="product-thumbs">
+						<div class="product-thumbs-track">
+							<div class="pt" data-imgbigurl="img/product/1.jpg"><img src="img/product/thumb-1.jpg" alt=""></div>
+							<div class="pt" data-imgbigurl="img/product/2.jpg"><img src="img/product/thumb-2.jpg" alt=""></div>
+							<div class="pt" data-imgbigurl="img/product/3.jpg"><img src="img/product/thumb-3.jpg" alt=""></div>
+							<div class="pt" data-imgbigurl="img/product/4.jpg"><img src="img/product/thumb-4.jpg" alt=""></div>
+						</div>
+					</div> -->
+				</div>
+				<div class="col-lg-5">
+					<div class="product-content">
+						<h2>{{detailProduct.name}}</h2>
+						<div class="pc-meta">
+              <h4 class="price">{{detailProduct.pricesale | currency: " $ " }}</h4>
+              <del>{{detailProduct.priceregular | currency: " $ " }}</del>
+              <br>
+              <br>
+							<div class="review">
+								<div class="rating">
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star is-fade"></i>
+								</div>
+								<span>(4 reviews)</span>
+							</div>
+						</div>
+						<p>The {{detailProduct.name}} Shoe delivers heritage style with premium materials and responsive cushioning. </p>
+						<div class="color-choose">
+							<span>Colors:</span>
+							<div class="cs-item">
+								<input type="radio" name="cs" id="black-color" checked>
+								<label class="cs-black" for="black-color"></label>
+							</div>
+							<div class="cs-item">
+								<input type="radio" name="cs" id="blue-color">
+								<label class="cs-blue" for="blue-color"></label>
+							</div>
+							<div class="cs-item">
+								<input type="radio" name="cs" id="yollow-color">
+								<label class="cs-yollow" for="yollow-color"></label>
+							</div>
+							<div class="cs-item">
+								<input type="radio" name="cs" id="orange-color">
+								<label class="cs-orange" for="orange-color"></label>
+							</div>
+						</div>
+						<div class="size-choose">
+							<span>Size:</span>
+							<div class="sc-item">
+								<input type="radio" name="sc" id="l-size" checked>
+								<label for="l-size">6.5</label>
+							</div>
+							<div class="sc-item">
+								<input type="radio" name="sc" id="xl-size">
+								<label for="xl-size">7</label>
+							</div>
+							<div class="sc-item">
+								<input type="radio" name="sc" id="xxl-size">
+								<label for="xxl-size">7.5</label>
+							</div>
+						</div>
+						<button class="site-btn btn-line" data-toggle="modal" data-target="#exampleModalBuy">Buy Now</button>
+					</div>
+				</div>
+			</div>
+			<div class="product-details">
+				<div class="row">
+					<div class="col-lg-10 offset-lg-1">
+						<ul class="nav" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" id="1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Description</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="2-tab" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Additional information</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="3-tab" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Reviews (0)</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<!-- single tab content -->
+							<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
+								<p>The Shoe delivers heritage style with premium materials and responsive cushioning.</p>
+							</div>
+							<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
+								<p>The Shoe delivers heritage style with premium materials and responsive cushioning.</p>
+							</div>
+							<div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="tab-3">
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="text-center rp-title">
+				<h5>Related products</h5>
+			</div>
+			<div class="row">
+				<div class="col-lg-3" *ngFor="let product of products">
+					<div class="product-item">
+						<figure>
+							<img src="{{product.imglink}}" alt="">
+							<div class="pi-meta">
+								<div class="pi-m-left">
+									<a target="blank" routerLink="/product/{{product.id}}"><img src="https://image.flaticon.com/icons/svg/709/709612.svg" width="20px" height="20px" alt=""></a>
+									<p>quick view</p>
+								</div>
+								<div class="pi-m-right">
+									<img src="https://image.flaticon.com/icons/svg/149/149219.svg" width="20px" height="20px" alt="">
+									<p>save</p>
+								</div>
+							</div>
+						</figure>
+						<div class="product-info">
+							<h6>{{product.name}}</h6>
+							<p>{{product.pricesale | currency: " $ "}}</p>
+							<button class="site-btn btn-line" data-toggle="modal" data-target="#exampleModalBuy">Buy Now</button>
+						</div>
+					</div>
+				</div>				
+			</div>
+		</div>
+	</div> 
+	<!-- Page end -->
+
+<!-- Bắt đầu modal Buy -->
+<div class="modal fade" id="exampleModalBuy" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Buy Now</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Buy Success!
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" data-dismiss="modal" aria-label="Close">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Kết thúc modal Buy -->
