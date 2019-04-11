@@ -5,7 +5,7 @@
 <div class="row">
   <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let product of products">
       <div class="card">
-          <img routerLink="/category/{{cateID}}/product/{{product.id}}" class="card-img-top" src="{{product.imglink}}" alt="Card image" style="width:100%">
+          <img routerLink="/category/{{product.categoryId}}/product/{{product.id}}" class="card-img-top" src="{{product.imglink}}" alt="Card image" style="width:100%">
           <div class="card-body">
             <h4 class="card-title">{{product.name}}</h4>
             <p class="card-text">Price: <b>{{product.pricesale | currency: " $ "}}  </b><del>{{product.priceregular  | currency: " $ "}}</del></p>
