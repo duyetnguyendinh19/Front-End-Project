@@ -1,0 +1,43 @@
+<header>
+  <!-- Bắt đầu navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="group">
+          <img routerLink="/home" src="https://cdn.iconscout.com/icon/free/png-256/air-jordan-555582.png" width="30px" height="30px"/>
+          <a routerLink="/home" class="navbar-brand" href="">Jordan Shop</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+
+            <form class="form-inline my-2 my-lg-0">
+                  <input #searchBox (input)="search(searchBox.value)" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">                                                  
+                  <!-- <ul>
+                      <li *ngFor="let product of products | async">
+                        <a routerLink="/product/{{product.id}}">
+                          {{product.name}}
+                        </a>
+                      </li>
+                  </ul> -->
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><img src="https://cdn1.iconfinder.com/data/icons/free-98-icons/32/search-256.png" width="25px" height="25px"/></button>
+            </form>             
+            
+            <li routerLinkActive="nav-item active">
+              <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li routerLinkActive="nav-item active">
+              <a class="nav-link" routerLink="/contact" >Contact</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Category
+              </a>
+              <app-category></app-category>
+            </li>
+          </ul>
+        </div>
+    </nav>
+  <!-- Kết thúc navbar -->
+</header>
