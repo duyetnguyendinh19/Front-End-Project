@@ -1,0 +1,70 @@
+
+<!-- Bắt đầu Table Product --> 
+ <div class="row">  
+  <div class="col">
+      <table class="table table-warning table-hover table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Image</th>
+              <th scope="col">Name</th>
+              <th scope="col">Price Sale</th>
+              <th scope="col">Price Regular</th>
+              <th scope="col">Status</th>
+              <th scope="col">Action</th>
+              <th scope="col">
+                <button class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal" >Add Product</button>     
+                <select class="form-control" #cateid (change)="getProducts(cateid.value)">
+                    <option *ngFor="let cate of categorys" [value]="cate.id">
+                      {{cate.id}}. {{cate.name}}
+                    </option>
+                </select>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr class="table-light" *ngFor="let product of products">
+              <th scope="row">{{product.id}}</th>
+              <td><img src="{{product.imglink}}" width="150px" height="80px"/></td>
+              <td>{{product.name}}</td>
+              <td>{{product.pricesale | currency: " $ "}}</td>
+              <td>{{product.priceregular | currency: " $ "}}</td>
+              <td>{{product.status ? 'Còn Hàng' : 'Hết Hàng'}}</td>
+              <td>
+                <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModalEdit" (click)=onEdit(product)>Edit</button>
+                
+                <button class="btn btn-dark" (click)=onDelete(product)  data-toggle="modal" data-target="#exampleModalDelete">Delete</button>
+              </td>
+              <td routerLink="/home"><img src="https://image.flaticon.com/icons/svg/926/926151.svg" width="80px" height="80px"/></td>
+            </tr>
+            
+          </tbody>        
+      </table>
+  </div>   
+ </div>
+<!-- Kết thúc Table Product -->
+
+<!-- Bắt đầu modal Delete -->
+<div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure delete Product: {{nameProduct}}?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button class="btn btn-danger" (click)=onDeleteAction() data-dismiss="modal" aria-label="Close">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Kết thúc modal Delete -->
+<app-add-product [dataProduct]="products"></app-add-product>  
+<app-edit-product [dataEdit]="productSelected"></app-edit-product>
