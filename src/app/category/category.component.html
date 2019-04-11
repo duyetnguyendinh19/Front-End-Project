@@ -1,0 +1,10 @@
+<!-- <ul *ngFor="let category of categorys">
+  <li>
+    {{category.name}}
+  </li>
+</ul> -->
+<div class="dropdown-menu" aria-labelledby="navbarDropdown" >
+  <ul *ngFor="let category of categorys">
+    <li><a class="dropdown-item" routerLink="/category/{{category.id}}/product">{{category.name}}</a></li>
+  </ul>
+</div>
