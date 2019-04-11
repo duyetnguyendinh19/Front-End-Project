@@ -1,92 +1,119 @@
 <!-- Bắt đầu Form Add -->
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Form Add Product</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="container">
-          <div class="form-group">
-            <input type="text" 
-              id="name"
-              required minlength="4"
-              class="form-control"
-              placeholder="Product Name"
-              [(ngModel)]="product.name"
-              [ngModelOptions]="{standalone: true}"
-              #name="ngModel"
-            />
+  <form #formAddProduct="ngForm" (submit)="addProduct(formAddProduct)">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Form Add Product</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="form-group">
+              <input type="text" 
+                name="name"
+                class="form-control"
+                placeholder="Product Name"
+                [(ngModel)]="product.name"
+                required
+                minlength="4"
+                #productName="ngModel"
+              />
 
-            <div *ngIf="name.invalid && (name.dirty || name.touched)"
-              class="alert alert-danger">
-        
-              <div *ngIf="name.errors.required">
-                Name is required.
+              <div *ngIf="productName.dirty && productName.errors?.required"
+                class="alert alert-danger">            
+                  Không được để trống       
               </div>
-              <div *ngIf="name.errors.minlength">
-                Name must be at least 4 characters long.
+
+              <div *ngIf="productName.dirty && productName.errors?.minlength"
+                class="alert alert-danger">            
+                  Có ít nhất 4 ký tự
+              </div>
+
+              <select name="categoryId" class="form-control" #cateid (change)="selectCate(cateid.value)" [(ngModel)]="categoryId" required>
+                <option *ngFor="let cate of categorys" [value]="cate.id">
+                  {{cate.id}}. {{cate.name}}
+                </option>
+              </select>
+
+      
+              <input type="text" 
+                name="imglink"
+                class="form-control"
+                placeholder="Product Image"
+                [(ngModel)]="product.imglink"
+                required
+                minlength="4"
+                #productimglink = "ngModel"         
+              />
+
+              <div *ngIf="productimglink.dirty && productimglink.errors?.required"
+                class="alert alert-danger">            
+                  Không được để trống       
+              </div>
+
+              <div *ngIf="productimglink.dirty && productimglink.errors?.minlength"
+                class="alert alert-danger">            
+                  Có ít nhất 4 ký tự
+              </div>
+
+              <div *ngIf="product.imglink">
+                <img src="{{product.imglink}}" width="100%" height="300px"/>
               </div>
         
+              <input type="number" 
+                name="pricesale"
+                class="form-control"
+                placeholder="Product Price Sale"
+                [(ngModel)]="product.pricesale"
+                required
+                #productpricesale = "ngModel"
+              />
+
+              <div *ngIf="productpricesale.dirty && productpricesale.errors?.required"
+                class="alert alert-danger">            
+                  Không được để trống       
+              </div>
+        
+              <input type="number" 
+                name="priceregular"
+                class="form-control"
+                placeholder="Product Price Regular"
+                [(ngModel)]="product.priceregular"
+                required
+                #productpriceregular = "ngModel"
+              />
+
+              <div *ngIf="productpriceregular.dirty && productpriceregular.errors?.required"
+                class="alert alert-danger">            
+                  Không được để trống       
+              </div>
+
+              <input type="text"      
+                  class="form-control"      
+                  value="{{product.status ? 'Còn Hàng' : 'Hết Hàng'}}"
+                  readonly
+              />
+
+              <input type="checkbox" 
+                name="status"
+                class="form-control"
+                [(ngModel)]="product.status"
+                checked
+              />
+              </div>
             </div>
-            
-
-            <select class="form-control" #cateid (change)="selectCate(cateid.value)" [(ngModel)]="product.categoryId">
-              <option *ngFor="let cate of categorys" [value]="cate.id">
-                <a >{{cate.id}}. {{cate.name}}</a>
-              </option>
-            </select>
-     
-            <input type="text" 
-              class="form-control"
-              placeholder="Product Image"
-              [(ngModel)]="product.imglink"
-              [ngModelOptions]="{standalone: true}"
-            />
-
-            <div *ngIf="product.imglink">
-              <img src="{{product.imglink}}" width="100%" height="300px"/>
-            </div>
-      
-            <input type="number" 
-              class="form-control"
-              placeholder="Product Price Sale"
-              [(ngModel)]="product.pricesale"
-              [ngModelOptions]="{standalone: true}"
-            />
-      
-            <input type="number" 
-              class="form-control"
-              placeholder="Product Price Regular"
-              [(ngModel)]="product.priceregular"
-              [ngModelOptions]="{standalone: true}"
-            />
-
-            <input type="text" 
-                class="form-control"      
-                value="{{product.status ? 'Còn Hàng' : 'Hết Hàng'}}"
-                readonly
-            />
-
-            <input type="checkbox" 
-              class="form-control"
-              [(ngModel)]="product.status"
-              [ngModelOptions]="{standalone: true}"
-              checked
-            />
-
-          </div>
-      </div>  
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        <button (click)="addProduct()" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Add Product</button>
+        </div>  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" >Add Product</button>
+        </div>
       </div>
     </div>
-  </div>
+  </form>
 </div>
 
 <!-- Kết thúc Form Add -->
