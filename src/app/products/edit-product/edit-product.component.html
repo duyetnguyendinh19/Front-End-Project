@@ -29,6 +29,17 @@
               [(ngModel)]="dataEdit.name"
               [ngModelOptions]="{standalone: true}"
             />
+
+            <select name="categoryId" 
+                      class="form-control" 
+                      #cateid
+                      [(ngModel)]="dataEdit.categoryId" 
+                      [ngModelOptions]="{standalone: true}"
+                      required>
+                <option *ngFor="let cate of categorys" [value]="cate.id" >
+                  {{cate.id}}. {{cate.name}}
+                </option>
+              </select>
         
             <b>Product Imglink : </b>
             <input type="text" 
