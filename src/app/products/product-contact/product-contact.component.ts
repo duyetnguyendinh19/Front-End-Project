@@ -29,7 +29,7 @@ export class ProductContactComponent implements OnInit {
   }
 
   getProducts(id){
-    this.productService.getProducts(id).subscribe(product => this.products = product);
+    this.productService.getProducts(id).subscribe(product => {this.products = product});
     
   }  
 
