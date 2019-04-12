@@ -33,12 +33,15 @@
                   Có ít nhất 4 ký tự
               </div>
 
-              <select name="categoryId" class="form-control" #cateid (change)="selectCate(cateid.value)" [(ngModel)]="categoryId" required>
-                <option *ngFor="let cate of categorys" [value]="cate.id">
+              <select name="categoryId" 
+                      class="form-control" 
+                      #cateid (input)="selectCate(cateid.value)" 
+                      [(ngModel)]="product.categoryId" 
+                      required>
+                <option *ngFor="let cate of categorys" [value]="cate.id" >
                   {{cate.id}}. {{cate.name}}
                 </option>
               </select>
-
       
               <input type="text" 
                 name="imglink"
