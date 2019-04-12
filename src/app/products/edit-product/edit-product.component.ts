@@ -29,9 +29,8 @@ export class EditProductComponent implements OnInit {
   saveData(){
     this.productServices.editProduct(this.dataEdit).subscribe( data =>
       {
-        if(data.categoryId !== this.category){  
-          console.log(this.dataProduct)    
-          console.log(this.dataProduct.filter(item => {item.id !== data.id}))
+        if(data.categoryId !== this.category){   
+         this.dataProduct = this.dataProduct.filter(item => (item.id !== data.id));
         }
       }
     );
