@@ -12,11 +12,12 @@ import { NgModel } from '@angular/forms';
 })
 export class AddProductComponent implements OnInit {
 
-  @Input() dataProduct;
+  @Input() dataProduct: Product[];
+  @Input() category: number;
 
-  product: Product = new Product();
   categorys: Category[];
-  cateid: number;
+  productcateid: number = 1;
+  product: Product = new Product();
 
   constructor(private productServices: ProductserviceService, private categorySevice: CategoryserviceService) { }
 
@@ -31,16 +32,21 @@ export class AddProductComponent implements OnInit {
 
   addProduct(formAddProduct: NgModel){
     if(formAddProduct.valid){
-      this.productServices.addProduct(this.cateid,formAddProduct.value).subscribe();
-    }
-    formAddProduct.reset();
+      this.productServices.addProduct(this.productcateid,formAddProduct.value).subscribe(
+        data => {if(this.productcateid == this.category ){
+          this.dataProduct.push(data)
+          }        
+        }
+      );     
+    }   
+    formAddProduct.reset(new Product());
   }
 
   getCategory(){
-    this.categorySevice.getCategory().subscribe(data => {this.categorys = data});
+    this.categorySevice.getCategory().subscribe(cate => {this.categorys = cate});
   }
 
   selectCate(id){
-    this.cateid = id;
+    this.productcateid = id;   
   }
 }
