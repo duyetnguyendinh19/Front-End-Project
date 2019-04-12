@@ -12,8 +12,8 @@ import { Category } from 'src/app/category/category';
 export class EditProductComponent implements OnInit {
 
   @Input() dataEdit;
-  @Input() dataShowProduct: Product[];
-  @Input() cateId: number;
+  @Input() dataProduct: Product[];
+  @Input() category: number;
   categorys: Category[];
 
   constructor(private productServices: ProductserviceService,private categorySevice: CategoryserviceService) { }
@@ -29,9 +29,9 @@ export class EditProductComponent implements OnInit {
   saveData(){
     this.productServices.editProduct(this.dataEdit).subscribe( data =>
       {
-        if(data.categoryId !== this.cateId){
-          console.log(this.dataShowProduct)
-          console.log(this.dataShowProduct.filter(item => {item.id !== data.id}))
+        if(data.categoryId !== this.category){  
+          console.log(this.dataProduct)    
+          console.log(this.dataProduct.filter(item => {item.id !== data.id}))
         }
       }
     );
