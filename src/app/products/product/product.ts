@@ -1,6 +1,6 @@
 export class Product{
     id: number;
-    categoryId: number;
+    categoryId: number = 1;
     name: string;
     imglink: string;
     pricesale: number;
