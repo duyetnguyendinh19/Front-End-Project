@@ -2,6 +2,12 @@
 <!-- Bắt đầu Table Product --> 
  <div class="row">  
   <div class="col">
+      <button class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal" >Add Product</button>     
+      <select class="form-control" #cate (change)="getProducts(cate.value)">
+          <option *ngFor="let cate of categorys" [value]="cate.id">
+            {{cate.id}}. {{cate.name}}
+          </option>
+      </select>
       <table class="table table-warning table-hover table-bordered">
           <thead>
             <tr>
@@ -12,14 +18,7 @@
               <th scope="col">Price Regular</th>
               <th scope="col">Status</th>
               <th scope="col">Action</th>
-              <th scope="col">
-                <button class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal" >Add Product</button>     
-                <select class="form-control" #cateid (change)="getProducts(cateid.value)">
-                    <option *ngFor="let cate of categorys" [value]="cate.id">
-                      {{cate.id}}. {{cate.name}}
-                    </option>
-                </select>
-              </th>
+              
             </tr>
           </thead>
 
@@ -31,12 +30,12 @@
               <td>{{product.pricesale | currency: " $ "}}</td>
               <td>{{product.priceregular | currency: " $ "}}</td>
               <td>{{product.status ? 'Còn Hàng' : 'Hết Hàng'}}</td>
-              <td>
+              <td style="text-align:center">
                 <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModalEdit" (click)=onEdit(product)>Edit</button>
                 
                 <button class="btn btn-dark" (click)=onDelete(product)  data-toggle="modal" data-target="#exampleModalDelete">Delete</button>
               </td>
-              <td routerLink="/home"><img src="https://image.flaticon.com/icons/svg/926/926151.svg" width="80px" height="80px"/></td>
+              
             </tr>
             
           </tbody>        
@@ -66,5 +65,9 @@
     </div>
   </div>
   <!-- Kết thúc modal Delete -->
-<app-add-product [dataProduct]="products"></app-add-product>  
-<app-edit-product [dataEdit]="productSelected"></app-edit-product>
+  <div *ngIf="cate">
+      <app-add-product [dataProduct]="products" [category]="cate.value"></app-add-product>  
+      <app-edit-product [dataEdit]="productSelected" [dataShowProduct]="products" [cateId]="cate.value"></app-edit-product>   
+  </div>
+
+  
