@@ -31,6 +31,7 @@ export class AddProductComponent implements OnInit {
   // }
 
   addProduct(formAddProduct: NgModel){
+    // console.log(formAddProduct)
     if(formAddProduct.valid){
       this.productServices.addProduct(this.productcateid,formAddProduct.value).subscribe(
         data => {if(this.productcateid == this.category ){
