@@ -1,7 +1,7 @@
 <!-- Bắt đầu Form Edit -->
 <!-- Modal -->
 <div class="modal fade" id="exampleModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form>
+    <form #formEditProduct="ngForm" (submit)="editProduct(formEditProduct)">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -16,27 +16,39 @@
   
               <b>Product ID : </b>
               <input type="text" 
+                name="id"
                 class="form-control"
                 placeholder="Product ID"
                 [(ngModel)]="dataEdit.id"
-                [ngModelOptions]="{standalone: true}"
                 readonly
               /> 
               
               <b>Product Name : </b>
               <input type="text" 
+                name ="name"
                 class="form-control"
                 placeholder="Product Name"
                 [(ngModel)]="dataEdit.name"
-                [ngModelOptions]="{standalone: true}"
+                required
+                minlength="4"
+                #productName="ngModel"
               />
+
+              <div *ngIf="productName.dirty && productName.errors?.required"
+                class="alert alert-danger">            
+                  Không được để trống       
+              </div>
+
+              <div *ngIf="productName.dirty && productName.errors?.minlength"
+                class="alert alert-danger">            
+                  Có ít nhất 4 ký tự
+              </div>
               
               <b>Category : </b>
               <select name="categoryId" 
                         class="form-control" 
                         #cateid
                         [(ngModel)]="dataEdit.categoryId" 
-                        [ngModelOptions]="{standalone: true}"
                         required>
                   <option *ngFor="let cate of categorys" [value]="cate.id" >
                     {{cate.id}}. {{cate.name}}
@@ -45,31 +57,58 @@
           
               <b>Product Imglink : </b>
               <input type="text" 
+                name="imglink"
                 class="form-control"
                 placeholder="Product Image"
                 [(ngModel)]="dataEdit.imglink"
-                [ngModelOptions]="{standalone: true}"
+                required
+                minlength="4"
+                #productimglink = "ngModel" 
               />
+
+              <div *ngIf="productimglink.dirty && productimglink.errors?.required"
+                class="alert alert-danger">            
+                  Không được để trống       
+              </div>
+
+              <div *ngIf="productimglink.dirty && productimglink.errors?.minlength"
+                class="alert alert-danger">            
+                  Có ít nhất 4 ký tự
+              </div>
         
               <img src="{{dataEdit.imglink}}" width="100%" height="300px"/>
   
               <br>
               <b>Product Price Sale : </b>
               <input type="number" 
+                name="pricesale"
                 class="form-control"
                 placeholder="Product Price Sale"
                 [(ngModel)]="dataEdit.pricesale"
-                [ngModelOptions]="{standalone: true}"
+                required
+                #productpricesale = "ngModel"
               />
+
+              <div *ngIf="productpricesale.dirty && productpricesale.errors?.required"
+                class="alert alert-danger">            
+                  Không được để trống       
+              </div>
         
               <b>Product Price Regular : </b>
               <input type="number" 
+                name="priceregular"
                 class="form-control"
                 placeholder="Product Price Regular"
                 [(ngModel)]="dataEdit.priceregular"
-                [ngModelOptions]="{standalone: true}"
+                required
+                #productpriceregular = "ngModel"
               />
     
+              <div *ngIf="productpriceregular.dirty && productpriceregular.errors?.required"
+                class="alert alert-danger">            
+                  Không được để trống       
+              </div>
+
               <b>Product Status : </b>
               <input type="text" 
                 class="form-control"      
@@ -78,6 +117,7 @@
               />
           
               <input type="checkbox" 
+                name="status"
                 class="form-control"
                 [(ngModel)]="dataEdit.status"
                 [ngModelOptions]="{standalone: true}"
@@ -87,7 +127,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            <button (click)="saveData()" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Save</button>
+            <button type="submit" class="btn btn-primary">Save</button>
           </div>
         </div>
       </div>
