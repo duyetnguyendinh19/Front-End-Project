@@ -3,6 +3,7 @@ import { ProductserviceService } from '../service/productservice.service';
 import { Product } from '../product/product';
 import { CategoryserviceService } from 'src/app/category/services/categoryservice.service';
 import { Category } from 'src/app/category/category';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-product',
@@ -26,13 +27,26 @@ export class EditProductComponent implements OnInit {
     this.categorySevice.getCategory().subscribe(cate => {this.categorys = cate});
   }
 
-  saveData(){
-    this.productServices.editProduct(this.dataEdit).subscribe( data =>
-      {
-        if(data.categoryId !== this.category){   
-         this.dataProduct = this.dataProduct.filter(item => (item.id !== data.id));
+  // saveData(){
+  //   this.productServices.editProduct(this.dataEdit).subscribe( data =>
+  //     {
+  //       if(data.categoryId !== this.category){   
+  //        this.dataProduct = this.dataProduct.filter(item => (item.id !== data.id));
+  //       }
+  //     }
+  //   );
+  // }
+
+  editProduct(formEditProduct: NgModel){
+    // console.log(formAddProduct)
+    if(formEditProduct.valid){
+      this.productServices.editProduct(formEditProduct.value).subscribe(
+        data => {
+          if(data.categoryId !== this.category){   
+           this.dataProduct = this.dataProduct.filter(item => (item.id !== data.id));
+          }
         }
-      }
-    );
+      );     
+    }   
   }
 }
