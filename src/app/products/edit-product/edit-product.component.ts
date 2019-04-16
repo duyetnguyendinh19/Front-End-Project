@@ -15,6 +15,7 @@ export class EditProductComponent implements OnInit {
   @Input() dataEdit;
   @Input() dataProduct: Product[];
   @Input() category: number;
+  products: Product[];
   categorys: Category[];
 
   constructor(private productServices: ProductserviceService,private categorySevice: CategoryserviceService) { }
@@ -43,10 +44,14 @@ export class EditProductComponent implements OnInit {
       this.productServices.editProduct(formEditProduct.value).subscribe(
         data => {
           if(data.categoryId !== this.category){   
-           this.dataProduct = this.dataProduct.filter(item => (item.id !== data.id));
-          }
+            this.products = this.dataProduct.filter(item => (item.id !== data.id));
+            this.dataProduct.length = 0;
+            for (const product of this.products) {
+              this.dataProduct.push(product);
+            }
+          } 
         }
       );     
-    }   
+    }    
   }
 }
