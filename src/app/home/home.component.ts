@@ -26,7 +26,11 @@ export class HomeComponent implements OnInit {
   getProducts(){
     this.categoryService.getCategory().subscribe(cate => {this.categorys = cate;
       for (var i=1;i <= this.categorys.length;i++) {
-        this.productService.getProducts(i).subscribe(product => this.products = product)
+        this.productService.getProducts(i).subscribe(product => 
+        {if(product.length>0){
+            this.products = product
+          }  
+        })
       }
     })
     
