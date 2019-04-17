@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { ProductserviceService } from '../service/productservice.service';
 import { Product } from '../product/product';
 import { CategoryserviceService } from 'src/app/category/services/categoryservice.service';
@@ -15,6 +15,7 @@ export class EditProductComponent implements OnInit {
   @Input() dataEdit;
   @Input() dataProduct: Product[];
   @Input() category: number;
+  @ViewChild('closeModalEdit') closeModalEdit: ElementRef;
   products: Product[];
   categorys: Category[];
 
@@ -51,7 +52,10 @@ export class EditProductComponent implements OnInit {
             }
           } 
         }
-      );     
+      );  
+      this.closeModalEdit.nativeElement.click()   
+    }else{
+      alert('Edit Failed')
     }    
   }
 }
