@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input, ViewChild, ElementRef } from '@angular/core';
 import { Product } from '../product/product';
 import { ProductserviceService } from '../service/productservice.service';
 import { CategoryserviceService } from 'src/app/category/services/categoryservice.service';
@@ -14,6 +14,7 @@ export class AddProductComponent implements OnInit {
 
   @Input() dataProduct: Product[];
   @Input() category: number;
+  @ViewChild('closeModalAdd') closeModalAdd: ElementRef;
 
   categorys: Category[];
   productcateid: number = 1;
@@ -38,9 +39,13 @@ export class AddProductComponent implements OnInit {
           this.dataProduct.push(data)
           }        
         }
-      );     
+      );
+      formAddProduct.reset(new Product()); 
+      this.closeModalAdd.nativeElement.click();    
+    }else{
+      alert('Add Failed')
     }   
-    formAddProduct.reset(new Product());
+    
   }
 
   getCategory(){
